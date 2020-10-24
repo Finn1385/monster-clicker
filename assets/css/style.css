@@ -60,6 +60,10 @@ body main .pov .monster {
   position: relative;
 }
 
+body main .pov .monster h2.monster-name {
+  margin: 10px;
+}
+
 body main .pov .monster .monster-health-bar {
   position: relative;
   width: 500px;
