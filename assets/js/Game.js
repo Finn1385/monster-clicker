@@ -2,7 +2,7 @@ class GameControls {
   constructor() {}
 
   hitMob(mob, damage = player.damage) {
-    if (damage !== 0) {
+    if (damage !== 0 && !isPaused) {
       if (mob.hp - damage > 0) {
         mob.hp -= damage;
         new GameMechanics().updateHpBar(mob);
