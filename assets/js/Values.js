@@ -27,7 +27,7 @@ const allMobNames = {
 };
 
 //Upgrades - Weapons
-var fist = new Weapon("Fist", 1, 0, "Fist.png", null, false);
+var fist = new Weapon("Fist", 1, 0, "Fist.png", null, true);
 var hammer = new Weapon("Hammer", 1.5, 25, "Hammer.png", fist, false);
 var axe = new Weapon("Axe", 1.6, 50, "Axe.png", hammer, false);
 
