@@ -34,6 +34,8 @@ class Mob {
       nextMob.spawn();
       generateMob(nextMob);
       // TODO rewards
+      player.coins += player.coins * this.dmgMultiplier;
+      gameMechanics.updateCoins();
     }
   }
 
@@ -44,6 +46,7 @@ class Mob {
       } else {
         player.coins = 0;
       }
+      gameMechanics.updateCoins();
       const monster = document.querySelector(".monster img.monster-img");
       monster.style.transform = "translateY(25px) scale(1.1)";
       setTimeout(() => {
