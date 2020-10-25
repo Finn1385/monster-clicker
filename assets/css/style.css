@@ -41,6 +41,34 @@ body main .pov {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+}
+
+body main .pov .coins {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .pov .coins p {
+  text-align: center;
+}
+
+body main .pov .coins img {
+  width: 100px;
 }
 
 body main .pov .monster {
@@ -116,4 +144,146 @@ body aside {
   width: 450px;
   height: 100vh;
   border-left: solid 2px var(--primary);
+}
+
+body aside .top {
+  width: 100%;
+  height: 15vh;
+  border-bottom: 2px solid var(--primary);
+}
+
+body aside .top h1 {
+  text-align: center;
+  padding: 15px;
+  height: 50%;
+}
+
+body aside .top .types {
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body aside .top .types .upgrade-type {
+  width: 50%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  height: 50px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+body aside .top .types .upgrade-type img {
+  width: 25px;
+}
+
+body aside .top .types .upgrade-type.active,
+body aside .top .types .upgrade-type:hover {
+  background: #333333;
+}
+
+body aside .upgrades-weapons,
+body aside .upgrades-magic {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 85vh;
+  overflow-y: auto;
+}
+
+body aside .upgrades-weapons .upgrades-item,
+body aside .upgrades-magic .upgrades-item {
+  cursor: pointer;
+  width: 100%;
+  height: 75px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+body aside .upgrades-weapons .upgrades-item .item-left,
+body aside .upgrades-magic .upgrades-item .item-left {
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body aside .upgrades-weapons .upgrades-item .item-left .item-name,
+body aside .upgrades-magic .upgrades-item .item-left .item-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body aside .upgrades-weapons .upgrades-item .item-left .item-name img,
+body aside .upgrades-magic .upgrades-item .item-left .item-name img {
+  width: 50px;
+}
+
+body aside .upgrades-weapons .upgrades-item p.price,
+body aside .upgrades-magic .upgrades-item p.price {
+  line-height: 75px;
+  margin-right: 10px;
+}
+
+body aside .upgrades-weapons .upgrades-item:hover,
+body aside .upgrades-weapons .upgrades-item.active,
+body aside .upgrades-magic .upgrades-item:hover,
+body aside .upgrades-magic .upgrades-item.active {
+  background: #333333;
+}
+
+body aside .upgrades-weapons.active,
+body aside .upgrades-magic.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monster Clicker</title>
     <link rel="stylesheet" href="./assets/css/style.min.css" />
-    <script src="./assets/js/Game.js"></script>
     <script src="./assets/js/Mobs.js"></script>
+    <script src="./assets/js/Upgrades.js"></script>
     <script src="./assets/js/Player.js"></script>
+    <script src="./assets/js/Game.js"></script>
     <script src="./assets/js/Values.js"></script>
     <script src="./assets/js/main.js"></script>
     <link
@@ -21,6 +22,12 @@
         <h1>Monster Clicker</h1>
       </div>
       <div class="pov">
+        <div class="coins">
+          <p>
+            <span class="amount"></span>
+          </p>
+          <img src="./assets/images/misc/Coin.gif" alt="Coins" />
+        </div>
         <div class="monster">
           <h2 class="monster-name"></h2>
           <div class="monster-health-bar">
@@ -31,6 +38,36 @@
         </div>
       </div>
     </main>
-    <aside></aside>
+    <aside>
+      <div class="top">
+        <h1>Upgrades</h1>
+        <div class="types">
+          <div
+            class="upgrade-type weapons active"
+            onclick="upgradesMenu('weapons')"
+          >
+            <img src="" alt=" " />
+            <p>Weapons</p>
+          </div>
+          <div class="upgrade-type magic" onclick="upgradesMenu('magic')">
+            <img src="" alt=" " />
+            <p>Magic</p>
+          </div>
+        </div>
+      </div>
+      <div class="upgrades-weapons active">
+        <div class="upgrades-item">
+          <div class="item-left">
+            <div class="item-name">
+              <img src="" alt=" " />
+              <h2>Fist</h2>
+            </div>
+            <p class="desc">+10 damage</p>
+          </div>
+          <p class="price">300 coins</p>
+        </div>
+      </div>
+      <div class="upgrades-magic"></div>
+    </aside>
   </body>
 </html>

@@ -21,13 +21,28 @@ body {
       text-align: center;
       line-height: 10vh;
     }
-
     .pov {
       width: 100%;
       height: 90vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      .coins {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        p {
+          text-align: center;
+        } // p
+        img {
+          width: 100px;
+        } // img
+      } // .coins
       .monster {
         display: flex;
         justify-content: center;
@@ -36,7 +51,7 @@ body {
         position: relative;
         h2.monster-name {
           margin: 10px;
-        }
+        } // h2.monster-name
         .monster-health-bar {
           position: relative;
           width: 500px;
@@ -79,5 +94,83 @@ body {
     width: 450px;
     height: 100vh;
     border-left: solid 2px var(--primary);
-  }
+    .top {
+      width: 100%;
+      height: 15vh;
+      border-bottom: 2px solid var(--primary);
+      h1 {
+        text-align: center;
+        padding: 15px;
+        height: 50%;
+      } // h1
+      .types {
+        height: 50%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        .upgrade-type {
+          width: 50%;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          border: 2px solid var(--primary);
+          height: 50px;
+          transition: 0.3s ease;
+          img {
+            width: 25px;
+          } // img
+        } // .upgrade-type
+        .upgrade-type.active,
+        .upgrade-type:hover {
+          background: #333333;
+        } // .upgrade-type.active
+      } // .types
+    } // .top
+    .upgrades-weapons,
+    .upgrades-magic {
+      display: none;
+      flex-direction: column;
+      height: 85vh;
+      overflow-y: auto;
+      .upgrades-item {
+        cursor: pointer;
+        width: 100%;
+        height: 75px;
+        display: flex;
+        justify-content: space-between;
+        transition: 0.2s ease;
+        .item-left {
+          margin-left: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .item-name {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            img {
+              width: 50px;
+            }
+          }
+        } // .item-left
+        p.price {
+          line-height: 75px;
+          margin-right: 10px;
+        } // p.price
+      } // .upgrades-item
+      .upgrades-item:hover,
+      .upgrades-item.active {
+        background: #333333;
+      } // .upgrades-item:hover, .upgrades-item.active
+    } // .upgrades-weapons, .upgrades-magic
+    .upgrades-weapons.active,
+    .upgrades-magic.active {
+      display: flex;
+    } // .upgrades-weapons.active, .upgrades-magic.active
+  } // aside
 } // body
