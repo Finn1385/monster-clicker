@@ -81,6 +81,90 @@ class UpgradesWeapons {
   }
 }
 
+class Magic {
+  constructor(name, dps, price, img, unlockBefore, isBought = false) {
+    this.name = name;
+    this.dps = dps;
+    this.price = price;
+    this.img = "magic/" + img;
+    this.unlockBefore = unlockBefore;
+    this.isBought = isBought;
+  }
+
+  buy() {
+    if (player.coins - this.price >= 0) {
+      player.magic = this;
+      player.dps = this.dps;
+      player.coins -= this.price;
+      this.isBought = true;
+      upgradesMagic.loadUpgrades();
+      gameMechanics.updateCoins();
+      gameMechanics.updateDPS();
+    }
+  }
+}
+
+class UpgradesMagic {
+  constructor(allMagic) {
+    this.allMagic = allMagic;
+  }
+
+  loadUpgrades() {
+    var upgradesDiv = document.querySelector("aside .upgrades-magic");
+    while (upgradesDiv.childNodes.length > 0) {
+      upgradesDiv.removeChild(upgradesDiv.lastChild);
+    }
+    this.allMagic.forEach((weapon) => {
+      if (
+        weapon.unlockBefore === null ||
+        (weapon.unlockBefore !== null && weapon.unlockBefore.isBought)
+      ) {
+        var weaponDiv = document.createElement("div");
+        weaponDiv.classList.add("upgrades-item");
+        if (weapon.isBought) {
+          weaponDiv.classList.add("bought");
+        }
+
+        if (!weapon.isBought) {
+          weaponDiv.onclick = () => {
+            weapon.buy();
+          };
+        }
+
+        var itemLeft = document.createElement("div");
+        itemLeft.classList.add("item-left");
+
+        var itemName = document.createElement("div");
+        itemName.classList.add("item-name");
+
+        var h2 = document.createElement("h2");
+        var img = document.createElement("img");
+        img.src = "./assets/images/upgrades/" + weapon.img;
+        img.alt = weapon.name;
+        itemName.appendChild(img);
+        h2.innerHTML = weapon.name;
+        itemName.appendChild(h2);
+        itemLeft.appendChild(itemName);
+
+        var pDesc = document.createElement("p");
+        pDesc.classList.add("desc");
+        pDesc.innerHTML = "+1 DPS";
+        // TODO desc
+        itemLeft.appendChild(pDesc);
+
+        weaponDiv.appendChild(itemLeft);
+
+        var pPrice = document.createElement("p");
+        pPrice.classList.add("price");
+        pPrice.innerHTML = weapon.price + " Coins";
+        weaponDiv.appendChild(pPrice);
+
+        upgradesDiv.appendChild(weaponDiv);
+      }
+    });
+  }
+}
+
 const upgradesMenu = (type) => {
   var menuButtons = document.querySelector("aside .top .types");
   var menuWeapons = document.querySelector("aside .upgrades-weapons");
