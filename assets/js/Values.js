@@ -75,5 +75,36 @@ const upgradesWeapons = new UpgradesWeapons([
 ]);
 
 // Upgrades - Magic
+const fireBall = new Magic("Fire Ball", 15, 2000, "Fire Ball.png", null, false);
+const energyBall = new Magic(
+  "Energy Ball",
+  30,
+  3800,
+  "Energy Ball.png",
+  fireBall,
+  false
+);
+const electricBall = new Magic(
+  "Electric Ball",
+  45,
+  7200,
+  "Electric ball.png",
+  energyBall,
+  false
+);
 
-const upgradesMagic = new UpgradesMagic([]);
+const arcaneBall = new Magic(
+  "Arcane Ball",
+  75,
+  13600,
+  "Arcane ball.png",
+  electricBall,
+  false
+);
+
+const upgradesMagic = new UpgradesMagic([
+  fireBall,
+  energyBall,
+  electricBall,
+  arcaneBall,
+]);
