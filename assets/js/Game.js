@@ -2,19 +2,21 @@ class GameControls {
   constructor() {}
 
   hitMob(mob, damage = player.damage) {
-    if (mob.hp - damage > 0) {
-      mob.hp -= damage;
-      new GameMechanics().updateHpBar(mob);
-      document.querySelector(".monster img.monster-img").style.transform =
-        "scale(.9)";
-      setTimeout(() => {
+    if (damage !== 0) {
+      if (mob.hp - damage > 0) {
+        mob.hp -= damage;
+        new GameMechanics().updateHpBar(mob);
         document.querySelector(".monster img.monster-img").style.transform =
-          "scale(1)";
-      }, 100);
-    } else {
-      mob.hp -= damage;
-      new GameMechanics().updateHpBar(mob);
-      mob.kill();
+          "scale(.9)";
+        setTimeout(() => {
+          document.querySelector(".monster img.monster-img").style.transform =
+            "scale(1)";
+        }, 100);
+      } else {
+        mob.hp -= damage;
+        new GameMechanics().updateHpBar(mob);
+        mob.kill();
+      }
     }
   }
 }
@@ -37,11 +39,39 @@ class GameMechanics {
     ).innerHTML = Math.round(player.coins);
   }
 
-  pauseGame() {
+  updateDPS() {
+    document.querySelector("main .pov .monster .monster-dps").innerHTML =
+      "Damage Per Second: " + player.dps;
+  }
+
+  gamePlayPause() {
     if (isPaused == true) {
-      isPaused = false;
+      this.gamePlay();
     } else {
-      isPaused = true;
+      this.gamePause();
     }
+  }
+
+  gamePause() {
+    isPaused = true;
+    var el = document.querySelector(".pov .play-pause .pause");
+
+    el.classList.add("play");
+    el.classList.remove("pause");
+  }
+
+  gamePlay() {
+    isPaused = false;
+    var el = document.querySelector(".pov .play-pause .play");
+    el.classList.remove("play");
+    el.classList.add("pause");
+  }
+
+  autoClicker() {
+    if (!isPaused) gameControls.hitMob(currentMob, player.dps);
+
+    setTimeout(() => {
+      this.autoClicker();
+    }, 1000);
   }
 }
