@@ -1,5 +1,5 @@
 class Mob {
-  constructor(name, hpMultiplier, dmgMultiplier, img) {
+  constructor(name, hpMultiplier, dmgMultiplier, img, rewardMultiplier) {
     this.hpMultiplier = hpMultiplier;
     this.maxHp = Math.round(defaultMobHealth * hpMultiplier);
     this.hp = this.maxHp;
@@ -7,6 +7,7 @@ class Mob {
     this.dmg = defaultMobDamage * dmgMultiplier;
     this.name = name;
     this.img = img;
+    this.rewardMultiplier = rewardMultiplier;
     this.isAlive = true;
   }
 
@@ -32,28 +33,30 @@ class Mob {
       monsterDiv.querySelector("img.monster-img").remove();
       this.isAlive = false;
       nextMob.spawn();
+      player.mobsKilled += 1;
       generateMob(nextMob);
-      // TODO rewards
-      player.coins += player.coins * this.dmgMultiplier;
+      player.coins += defaultMobReward * this.rewardMultiplier;
       gameMechanics.updateCoins();
     }
   }
 
   attack() {
     if (this.isAlive) {
-      if (player.coins - this.dmg >= 0) {
-        player.coins -= this.dmg;
-      } else {
-        player.coins = 0;
+      if (!isPaused) {
+        if (player.coins - this.dmg >= 0) {
+          player.coins -= this.dmg;
+        } else {
+          player.coins = 0;
+        }
+        gameMechanics.updateCoins();
+        const monster = document.querySelector(".monster img.monster-img");
+        monster.style.transform = "translateY(50px) scale(1.1)";
+        document.querySelector(".pov").classList.add("shake");
+        setTimeout(() => {
+          monster.style.transform = null;
+          document.querySelector(".pov").classList.remove("shake");
+        }, 150);
       }
-      gameMechanics.updateCoins();
-      const monster = document.querySelector(".monster img.monster-img");
-      monster.style.transform = "translateY(25px) scale(1.1)";
-      document.querySelector(".pov").classList.add("shake");
-      setTimeout(() => {
-        monster.style.transform = null;
-        document.querySelector(".pov").classList.remove("shake");
-      }, 150);
       setTimeout(() => {
         this.attack();
       }, 2000);
@@ -74,10 +77,21 @@ const generateMob = (oldMob) => {
     return generateMob(oldMob);
   }
 
-  nextMob = new Mob(
-    randomMob.name,
-    oldMob.hpMultiplier + 0.01,
-    oldMob.dmgMultiplier + 0.025,
-    randomMob.img
-  );
+  if (player.mobsKilled % 10 == 0) {
+    nextMob = new Mob(
+      randomMob.name,
+      oldMob.hpMultiplier + 0.5,
+      oldMob.dmgMultiplier + 0.5,
+      randomMob.img,
+      oldMob.rewardMultiplier + 1
+    );
+  } else {
+    nextMob = new Mob(
+      randomMob.name,
+      oldMob.hpMultiplier,
+      oldMob.dmgMultiplier,
+      randomMob.img,
+      oldMob.rewardMultiplier
+    );
+  }
 };
