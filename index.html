@@ -22,6 +22,12 @@
         <h1>Monster Clicker</h1>
       </div>
       <div class="pov">
+        <div class="play-pause">
+          <button
+            class="pause"
+            onclick="gameMechanics.gamePlayPause();"
+          ></button>
+        </div>
         <div class="coins">
           <p>
             <span class="amount"></span>
@@ -34,7 +40,7 @@
             <p class="monster-hp"></p>
             <div class="monster-health" style="width: 0%"></div>
           </div>
-          <p class="monster-hps">HPS: 0</p>
+          <p class="monster-dps">Damage Per Second: 0</p>
         </div>
       </div>
     </main>
@@ -46,7 +52,7 @@
             class="upgrade-type weapons active"
             onclick="upgradesMenu('weapons')"
           >
-            <img src="" alt=" " />
+            <img src="./assets/images/upgrades/weapons/Fist.png" alt=" " />
             <p>Weapons</p>
           </div>
           <div class="upgrade-type magic" onclick="upgradesMenu('magic')">
