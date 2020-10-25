@@ -20,14 +20,32 @@ body {
 body main {
   height: 100vh;
   width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../images/misc/Background.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/misc/Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
 }
 
 body main .top {
   width: 100%;
   height: 10vh;
-  text-align: center;
-  line-height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .top img {
+  position: absolute;
+  top: 15px;
+  width: 350px;
 }
 
 body main .pov {
@@ -45,9 +63,48 @@ body main .pov {
   position: relative;
 }
 
+body main .pov .play-pause {
+  position: absolute;
+  top: -6.5vh;
+  left: 25px;
+}
+
+body main .pov .play-pause button {
+  background: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease;
+}
+
+body main .pov .play-pause button.play {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 20px;
+  height: 25px;
+  border-width: 12.5px 0px 12.5px 20px;
+  border-color: transparent transparent transparent rgba(237, 242, 244, 0.7);
+}
+
+body main .pov .play-pause button.play:hover {
+  border-color: transparent transparent transparent #edf2f4;
+}
+
+body main .pov .play-pause button.pause {
+  width: 25px;
+  height: 25px;
+  border-style: double;
+  border-width: 0px 0px 0px 12.5px;
+  border-color: rgba(237, 242, 244, 0.7);
+}
+
+body main .pov .play-pause button.pause:hover {
+  border-color: #edf2f4;
+}
+
 body main .pov .coins {
   position: absolute;
-  top: 0;
+  top: -10vh;
   right: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -116,7 +173,7 @@ body main .pov .monster .monster-health-bar .monster-health {
   background: var(--secondary);
 }
 
-body main .pov .monster p.monster-hps {
+body main .pov .monster p.monster-dps {
   margin: 5px;
   font-size: 0.8rem;
 }
@@ -129,6 +186,8 @@ body main .pov .monster img.monster-img {
   transition: -webkit-transform 0.1s ease;
   transition: transform 0.1s ease;
   transition: transform 0.1s ease, -webkit-transform 0.1s ease;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body main .pov .monster img.monster-img:hover {
@@ -139,6 +198,15 @@ body main .pov .monster img.monster-img:hover {
 body main .pov .monster img.monster-img:active {
   -webkit-transform: scale(1);
           transform: scale(1);
+}
+
+body main .pov .magic {
+  position: absolute;
+  bottom: 10px;
+}
+
+body main .pov .magic img {
+  width: 150px;
 }
 
 body main .pov.shake {
@@ -241,6 +309,8 @@ body main .pov.shake {
 }
 
 body aside {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.5))), url("../images/misc/Wood.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("../images/misc/Wood.png");
   width: 450px;
   height: 100vh;
   border-left: solid 2px var(--primary);
@@ -248,18 +318,34 @@ body aside {
 
 body aside .top {
   width: 100%;
-  height: 15vh;
+  height: 22.5vh;
   border-bottom: 2px solid var(--primary);
 }
 
 body aside .top h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   text-align: center;
-  padding: 15px;
+  margin: 40px;
   height: 50%;
 }
 
+body aside .top h1 img {
+  width: 75px;
+}
+
 body aside .top .types {
-  height: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -297,7 +383,8 @@ body aside .top .types .upgrade-type {
 }
 
 body aside .top .types .upgrade-type img {
-  width: 25px;
+  width: 50px;
+  margin-left: -15px;
 }
 
 body aside .top .types .upgrade-type.active,
@@ -312,7 +399,7 @@ body aside .upgrades-magic {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 85vh;
+  height: 72.4vh;
   overflow-y: auto;
 }
 
@@ -355,9 +442,6 @@ body aside .upgrades-magic .upgrades-item .item-left .item-name {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -368,17 +452,60 @@ body aside .upgrades-magic .upgrades-item .item-left .item-name img {
   width: 50px;
 }
 
+body aside .upgrades-weapons .upgrades-item .item-left .item-name h2,
+body aside .upgrades-magic .upgrades-item .item-left .item-name h2 {
+  font-size: 1.2rem;
+}
+
+body aside .upgrades-weapons .upgrades-item .item-left p.desc,
+body aside .upgrades-magic .upgrades-item .item-left p.desc {
+  font-size: 0.8rem;
+}
+
 body aside .upgrades-weapons .upgrades-item p.price,
 body aside .upgrades-magic .upgrades-item p.price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   line-height: 75px;
   margin-right: 10px;
+  font-size: 1rem;
+}
+
+body aside .upgrades-weapons .upgrades-item p.price .coin,
+body aside .upgrades-magic .upgrades-item p.price .coin {
+  width: 20px;
+  margin-left: 5px;
 }
 
 body aside .upgrades-weapons .upgrades-item:hover,
-body aside .upgrades-weapons .upgrades-item.active,
-body aside .upgrades-magic .upgrades-item:hover,
-body aside .upgrades-magic .upgrades-item.active {
-  background: #333333;
+body aside .upgrades-magic .upgrades-item:hover {
+  background: rgba(33, 33, 33, 0.5);
+}
+
+body aside .upgrades-weapons .upgrades-item.bought,
+body aside .upgrades-magic .upgrades-item.bought {
+  background: rgba(51, 51, 51, 0.5);
+}
+
+body aside .upgrades-weapons .upgrades-item.bought p.price,
+body aside .upgrades-magic .upgrades-item.bought p.price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body aside .upgrades-weapons .upgrades-item.bought p.price svg.bought,
+body aside .upgrades-magic .upgrades-item.bought p.price svg.bought {
+  fill: var(--primary);
+  width: 35px;
+  height: auto;
 }
 
 body aside .upgrades-weapons.active,

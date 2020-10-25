@@ -15,12 +15,23 @@ body {
   main {
     height: 100vh;
     width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../images/misc/Background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     overflow: hidden;
     .top {
       width: 100%;
       height: 10vh;
-      text-align: center;
-      line-height: 10vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        position: absolute;
+        top: 15px;
+        width: 350px;
+      }
     }
     .pov {
       width: 100%;
@@ -29,9 +40,42 @@ body {
       justify-content: center;
       align-items: center;
       position: relative;
+      .play-pause {
+        position: absolute;
+        top: -6.5vh;
+        left: 25px;
+        button {
+          background: none;
+          outline: none;
+          cursor: pointer;
+          transition: border-color 0.3s ease;
+        } // button
+        button.play {
+          box-sizing: border-box;
+          width: 20px;
+          height: 25px;
+          border-width: 12.5px 0px 12.5px 20px;
+          border-color: transparent transparent transparent
+            rgba($color: #edf2f4, $alpha: 0.7);
+        } // button.play
+        button.play:hover {
+          border-color: transparent transparent transparent
+            rgba($color: #edf2f4, $alpha: 1);
+        } // button.play:hover, button.play:active
+        button.pause {
+          width: 25px;
+          height: 25px;
+          border-style: double;
+          border-width: 0px 0px 0px 12.5px;
+          border-color: rgba($color: #edf2f4, $alpha: 0.7);
+        } // button.pause
+        button.pause:hover {
+          border-color: rgba($color: #edf2f4, $alpha: 1);
+        }
+      } // .play-pause
       .coins {
         position: absolute;
-        top: 0;
+        top: -10vh;
         right: 25px;
         display: flex;
         flex-direction: row;
@@ -72,7 +116,7 @@ body {
             background: var(--secondary);
           } // monster-health
         } // .monster-health-bar
-        p.monster-hps {
+        p.monster-dps {
           margin: 5px;
           font-size: 0.8rem;
         }
@@ -81,6 +125,8 @@ body {
           height: 256px;
           cursor: pointer;
           transition: transform 0.1s ease;
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+          -webkit-tap-highlight-color: transparent;
         }
         img.monster-img:hover {
           transform: scale(1.1);
@@ -89,6 +135,13 @@ body {
           transform: scale(1);
         }
       } // .monster
+      .magic {
+        position: absolute;
+        bottom: 10px;
+        img {
+          width: 150px;
+        }
+      }
     } // .pov
     .pov.shake {
       animation: shake 0.5s infinite;
@@ -130,20 +183,28 @@ body {
     }
   } // main
   aside {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+      url("../images/misc/Wood.png");
     width: 450px;
     height: 100vh;
     border-left: solid 2px var(--primary);
     .top {
       width: 100%;
-      height: 15vh;
+      height: 22.5vh;
       border-bottom: 2px solid var(--primary);
       h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         text-align: center;
-        padding: 15px;
+        margin: 40px;
         height: 50%;
+        img {
+          width: 75px;
+        } // img
       } // h1
       .types {
-        height: 50%;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -160,7 +221,8 @@ body {
           height: 50px;
           transition: 0.3s ease;
           img {
-            width: 25px;
+            width: 50px;
+            margin-left: -15px;
           } // img
         } // .upgrade-type
         .upgrade-type.active,
@@ -173,7 +235,7 @@ body {
     .upgrades-magic {
       display: none;
       flex-direction: column;
-      height: 85vh;
+      height: 72.4vh;
       overflow-y: auto;
       .upgrades-item {
         cursor: pointer;
@@ -190,22 +252,45 @@ body {
           .item-name {
             display: flex;
             flex-direction: row;
-            justify-content: center;
             align-items: center;
             img {
               width: 50px;
-            }
+            } // img
+            h2 {
+              font-size: 1.2rem;
+            } // .h2
+          } // .item-name
+          p.desc {
+            font-size: 0.8rem;
           }
         } // .item-left
         p.price {
+          display: flex;
+          align-items: center;
           line-height: 75px;
           margin-right: 10px;
+          font-size: 1rem;
+          .coin {
+            width: 20px;
+            margin-left: 5px;
+          }
         } // p.price
       } // .upgrades-item
-      .upgrades-item:hover,
-      .upgrades-item.active {
-        background: #333333;
-      } // .upgrades-item:hover, .upgrades-item.active
+      .upgrades-item:hover {
+        background: rgba($color: #212121, $alpha: 0.5);
+      } // .upgrades-item:hover, :not(.upgrades-item.bought)
+      .upgrades-item.bought {
+        background: rgba($color: #333, $alpha: 0.5);
+        p.price {
+          display: flex;
+          justify-content: center;
+          svg.bought {
+            fill: var(--primary);
+            width: 35px;
+            height: auto;
+          }
+        }
+      }
     } // .upgrades-weapons, .upgrades-magic
     .upgrades-weapons.active,
     .upgrades-magic.active {
