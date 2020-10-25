@@ -49,8 +49,10 @@ class Mob {
       gameMechanics.updateCoins();
       const monster = document.querySelector(".monster img.monster-img");
       monster.style.transform = "translateY(25px) scale(1.1)";
+      document.querySelector(".pov").classList.add("shake");
       setTimeout(() => {
         monster.style.transform = null;
+        document.querySelector(".pov").classList.remove("shake");
       }, 150);
       setTimeout(() => {
         this.attack();
