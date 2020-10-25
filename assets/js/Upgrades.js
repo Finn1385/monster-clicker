@@ -64,15 +64,22 @@ class UpgradesWeapons {
 
         var pDesc = document.createElement("p");
         pDesc.classList.add("desc");
-        pDesc.innerHTML = "+10 damage";
-        // TODO desc
+        pDesc.innerHTML =
+          "Damage: " + defaultPlayerDamage * weapon.dmgMultiplier;
         itemLeft.appendChild(pDesc);
 
         weaponDiv.appendChild(itemLeft);
 
         var pPrice = document.createElement("p");
         pPrice.classList.add("price");
-        pPrice.innerHTML = weapon.price + " Coins";
+        if (weapon.isBought) {
+          pPrice.innerHTML =
+            '<svg class="bought" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>';
+        } else {
+          pPrice.innerHTML =
+            weapon.price +
+            " <img class='coin' src='./assets/images/misc/Coin.png' />";
+        }
         weaponDiv.appendChild(pPrice);
 
         upgradesDiv.appendChild(weaponDiv);
@@ -100,6 +107,12 @@ class Magic {
       upgradesMagic.loadUpgrades();
       gameMechanics.updateCoins();
       gameMechanics.updateDPS();
+      document.querySelector(".pov .magic").innerHTML =
+        '<img src="./assets/images/upgrades/' +
+        this.img +
+        '" alt="' +
+        this.name +
+        '" />';
     }
   }
 }
@@ -148,15 +161,21 @@ class UpgradesMagic {
 
         var pDesc = document.createElement("p");
         pDesc.classList.add("desc");
-        pDesc.innerHTML = "+1 DPS";
-        // TODO desc
+        pDesc.innerHTML = "Damage Per Second: " + weapon.dps;
         itemLeft.appendChild(pDesc);
 
         weaponDiv.appendChild(itemLeft);
 
         var pPrice = document.createElement("p");
         pPrice.classList.add("price");
-        pPrice.innerHTML = weapon.price + " Coins";
+        if (weapon.isBought) {
+          pPrice.innerHTML =
+            '<svg class="bought" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>';
+        } else {
+          pPrice.innerHTML =
+            weapon.price +
+            " <img class='coin' src='./assets/images/misc/Coin.png' />";
+        }
         weaponDiv.appendChild(pPrice);
 
         upgradesDiv.appendChild(weaponDiv);
