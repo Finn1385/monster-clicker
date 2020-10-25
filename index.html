@@ -12,6 +12,11 @@
     <script src="./assets/js/Values.js"></script>
     <script src="./assets/js/main.js"></script>
     <link
+      rel="shortcut icon"
+      href="./assets/images/misc/Logo.png"
+      type="image/png"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
@@ -19,7 +24,7 @@
   <body>
     <main>
       <div class="top">
-        <h1>Monster Clicker</h1>
+        <img src="./assets/images/misc/Logo.png" alt="Shady Dungeon" />
       </div>
       <div class="pov">
         <div class="play-pause">
@@ -42,11 +47,14 @@
           </div>
           <p class="monster-dps">Damage Per Second: 0</p>
         </div>
+        <div class="magic"></div>
       </div>
     </main>
     <aside>
       <div class="top">
-        <h1>Upgrades</h1>
+        <h1>
+          <img src="./assets/images/misc/Upgrade icon.png" alt=" " />Upgrades
+        </h1>
         <div class="types">
           <div
             class="upgrade-type weapons active"
@@ -56,23 +64,12 @@
             <p>Weapons</p>
           </div>
           <div class="upgrade-type magic" onclick="upgradesMenu('magic')">
-            <img src="" alt=" " />
+            <img src="./assets/images/upgrades/magic/Fire Ball.png" alt=" " />
             <p>Magic</p>
           </div>
         </div>
       </div>
-      <div class="upgrades-weapons active">
-        <div class="upgrades-item">
-          <div class="item-left">
-            <div class="item-name">
-              <img src="" alt=" " />
-              <h2>Fist</h2>
-            </div>
-            <p class="desc">+10 damage</p>
-          </div>
-          <p class="price">300 coins</p>
-        </div>
-      </div>
+      <div class="upgrades-weapons active"></div>
       <div class="upgrades-magic"></div>
     </aside>
   </body>
